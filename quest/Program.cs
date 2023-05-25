@@ -32,6 +32,16 @@ namespace Quest
 ",
                 4, 20
             );
+            Challenge starWars = new Challenge(@"is darth vader good? 
+             1)yes
+             2)no",
+              2, 10 );
+
+            Challenge zelda = new Challenge(@"who do you play as in the game Zelda?
+            1) Zelda
+            2) Mario
+            3) Link
+            ", 3,5);
 
             // "Awesomeness" is like our Adventurer's current "score"
             // A higher Awesomeness is better
@@ -62,21 +72,35 @@ namespace Quest
             // Make a new "Adventurer" object using the "Adventurer" class
             Adventurer theAdventurer = new Adventurer(adventureName,xyz,ballcap);
             Console.WriteLine(theAdventurer.getDescription());
+            runGauntlet(theAdventurer);
             
             // A list of challenges for the Adventurer to complete
             // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
             // void runGauntlet(){
+            void runGauntlet(Adventurer greg){
             List<Challenge> challenges = new List<Challenge>()
             {
                 twoPlusTwo,
                 theAnswer,
                 whatSecond,
                 guessRandom,
-                favoriteBeatle
-            };
+                favoriteBeatle,
+                starWars,
+                zelda
+            }; 
+
+            
+
+            // select 5 challenges at random
+            List<Challenge> randomChallenge= new List<Challenge>();
+            for (int i =0; i<5; i++){
+                Random selectChallenge = new Random();
+                int index = selectChallenge.Next(0,6);
+                randomChallenge.Add(challenges[index]);
+            } 
 
             // Loop through all the challenges and subject the Adventurer to them
-            foreach (Challenge challenge in challenges)
+            foreach (Challenge challenge in randomChallenge)
             {
                 challenge.RunChallenge(theAdventurer);
             }
@@ -101,31 +125,40 @@ namespace Quest
             thePrize.showPrize(theAdventurer);
             
         //    thePrize._text;
-           
-            
-            second();
-            
-
-
-
-
-        }
-        static void second()
-        
-        {
-            Console.WriteLine("do you want to play again?/n 1) yes /n 2) no");
+            // Console.WriteLine(theAdventurer.correctAnswers);
+            Console.WriteLine(@"do you want to play again?
+             1) yes
+             2) no");
             string playAgain = Console.ReadLine();
             int play= int.Parse(playAgain);
-
             switch(play)
             {
                 case 1:
-                    Main(null);
+                    int addAwesome = theAdventurer.correctAnswers * 10;
+                    theAdventurer.Awesomeness = 50 + addAwesome;
+                    theAdventurer.correctAnswers=0;
+                    runGauntlet(theAdventurer);
                     break;
                 case 2:
                     return;
             }
+           }//run gauntlet end
+            
+        
+            
+            
+
+            
         }
+            
+            
+
+
+
+
+        
+        
+        
         
     }
 }
