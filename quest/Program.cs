@@ -62,7 +62,7 @@ namespace Quest
             // Make a new "Adventurer" object using the "Adventurer" class
             Adventurer theAdventurer = new Adventurer(adventureName,xyz,ballcap);
             Console.WriteLine(theAdventurer.getDescription());
-
+            
             // A list of challenges for the Adventurer to complete
             // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
             // void runGauntlet(){
@@ -96,6 +96,13 @@ namespace Quest
                 Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
             }
             // }
+            Prize thePrize= new Prize("this is gold");
+
+            thePrize.showPrize(theAdventurer);
+            
+        //    thePrize._text;
+           
+            
             second();
             
 
