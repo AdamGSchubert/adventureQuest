@@ -48,7 +48,11 @@ namespace Quest
                     "blue",
                     "green",
                 },
-                Length= 24
+                Length= 960
+            };
+
+            Hat ballcap = new Hat(){
+                ShininessLevel = 1
             };
             
             Console.WriteLine("What is your name Adventurer?");
@@ -56,7 +60,7 @@ namespace Quest
             string adventureName = Console.ReadLine();
 
             // Make a new "Adventurer" object using the "Adventurer" class
-            Adventurer theAdventurer = new Adventurer(adventureName,xyz);
+            Adventurer theAdventurer = new Adventurer(adventureName,xyz,ballcap);
             Console.WriteLine(theAdventurer.getDescription());
 
             // A list of challenges for the Adventurer to complete
